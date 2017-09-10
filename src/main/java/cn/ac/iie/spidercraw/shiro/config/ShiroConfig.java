@@ -1,10 +1,12 @@
-/*package cn.ac.iie.spidercraw.shiro.config;
+package cn.ac.iie.spidercraw.shiro.config;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class ShiroConfig {
 	private static final Logger logger=Logger.getLogger(ShiroConfig.class);
 	@Bean
-	public ShiroFilterFactoryBean shiroFilter(org.apache.shiro.mgt.SecurityManager securityManager) {
+	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
 		logger.info("--------------ShiroConfig shiroFilter");
 		ShiroFilterFactoryBean shiroFilterFactoryBean=new ShiroFilterFactoryBean();
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
@@ -33,9 +35,11 @@ public class ShiroConfig {
 		return shiroFilterFactoryBean;
 	}
 	
-//	@Bean
-//	public MyShiroRealm myShiroRealm() {
-//		return null;
-//	}
+	@Bean
+	public SecurityManager securityManager() {
+		DefaultWebSecurityManager securityManager=new DefaultWebSecurityManager();
+		securityManager.setRealm(null);
+		return securityManager;
+	}
+	
 }
-*/
